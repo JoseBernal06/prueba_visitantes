@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class BlogPage extends StatefulWidget {
-  const BlogPage({super.key});
+  final VoidCallback? onRefreshNeeded;
+  const BlogPage({super.key, this.onRefreshNeeded});
 
   @override
   State<BlogPage> createState() => _BlogPageState();
@@ -16,6 +17,11 @@ class _BlogPageState extends State<BlogPage> {
   @override
   void initState() {
     super.initState();
+    _loadImages();
+  }
+
+  // Método público para recargar visitantes desde otras pantallas
+  void reloadVisitantes() {
     _loadImages();
   }
 
@@ -103,7 +109,7 @@ class _BlogPageState extends State<BlogPage> {
                                 },
                               ),
                             ),
-                            // Descripción y fecha
+                            // Información del visitante
                             Padding(
                               padding: const EdgeInsets.all(16),
                               child: Column(

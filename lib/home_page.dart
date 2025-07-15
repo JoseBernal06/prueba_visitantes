@@ -13,11 +13,27 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
   final supabase = Supabase.instance.client;
+  late BlogPage _visitantesPage;
+  late UploadPage _uploadPage;
+  late final List<Widget> _pages;
+  
+  @override
+  void initState() {
+    super.initState();
+    _visitantesPage = const BlogPage();
+    _uploadPage = UploadPage(onVisitanteAdded: _onVisitanteAdded);
+    _pages = [_visitantesPage, _uploadPage];
+  }
 
-  final List<Widget> _pages = [
-    const BlogPage(),
-    const UploadPage(),
-  ];
+  void _onVisitanteAdded() {
+    // Cambiar automáticamente a la pestaña de ver visitantes
+    setState(() {
+      _selectedIndex = 0;
+      // Recrear la página de visitantes para que se actualice
+      _visitantesPage = const BlogPage();
+      _pages[0] = _visitantesPage;
+    });
+  }
 
   final List<String> _titles = [
     'Ver visitantes',

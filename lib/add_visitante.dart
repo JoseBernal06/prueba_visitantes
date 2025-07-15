@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class UploadPage extends StatefulWidget {
-  const UploadPage({super.key});
+  final VoidCallback? onVisitanteAdded;
+  const UploadPage({super.key, this.onVisitanteAdded});
 
   @override
   State<UploadPage> createState() => _UploadPageState();
@@ -157,6 +158,11 @@ class _UploadPageState extends State<UploadPage> {
         selectedImage = null;
         fechaHora = DateTime.now();
       });
+
+      // Notificar que se agregó un visitante
+      if (widget.onVisitanteAdded != null) {
+        widget.onVisitanteAdded!();
+      }
       
     } catch (e) {
       Navigator.of(context).pop();
