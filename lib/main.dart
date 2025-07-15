@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'config/supabase_config.dart';
 import 'login_registro.dart';
 import 'home_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Supabase.initialize(
-    url: 'https://yrmwixiqqroweurpkeyc.supabase.co',
-    anonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlybXdpeGlxcXJvd2V1cnBrZXljIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDgzNzQ4MTYsImV4cCI6MjA2Mzk1MDgxNn0.veJOqJPNqMDKIJplD18Pcptbzljd0hdFjqINSxF_78E',
+    url: SupabaseConfig.supabaseUrl,
+    anonKey: SupabaseConfig.supabaseAnonKey,
   );
 
   runApp(const MyApp());
